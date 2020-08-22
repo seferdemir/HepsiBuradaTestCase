@@ -1,13 +1,19 @@
-﻿namespace MarsRover
+﻿using System;
+
+namespace MarsRover
 {
     public class Rover
     {
+        private int bound_X { get; set; }
+        private int bound_Y { get; set; }
         private int coor_X { get; set; }
         private int coor_Y { get; set; }
         private char or { get; set; }
 
-        public Rover(int coor_X, int coor_Y, char or)
+        public Rover(int bound_X, int bound_Y, int coor_X, int coor_Y, char or)
         {
+            this.bound_X = bound_X;
+            this.bound_Y = bound_Y;
             this.coor_X = coor_X;
             this.coor_Y = coor_Y;
             this.or = or;
@@ -60,16 +66,28 @@
             switch (or)
             {
                 case 'N':
-                    coor_Y++;
+                    if (coor_Y < bound_Y)
+                        coor_Y++;
+                    //else
+                    //    Console.WriteLine("Rover out of bounds!");
                     break;
                 case 'S':
-                    coor_Y--;
+                    if (coor_Y > 0)
+                        coor_Y--;
+                    //else
+                    //    Console.WriteLine("Rover out of bounds!");
                     break;
                 case 'E':
-                    coor_X++;
+                    if (coor_X < bound_X)
+                        coor_X++;
+                    //else
+                    //    Console.WriteLine("Rover out of bounds!");
                     break;
                 case 'W':
-                    coor_X--;
+                    if (coor_X > 0)
+                        coor_X--;
+                    //else
+                    //    Console.WriteLine("Rover out of bounds!");
                     break;
                 default:
                     break;
